@@ -10,7 +10,7 @@ import ModalCryptoDetails from './ModalCryptoDetails';
 
 function SymbolTable() {
     const [cryptoData, setCryptoData] = useState([]);
-    const [selectedCrypto, setSelectedCrypto] = useState({}); // اینجا پرانتز بسته شده است
+    const [selectedCrypto, setSelectedCrypto] = useState({});
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
