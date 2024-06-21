@@ -13,14 +13,3 @@ export const fetchCryptoData = async (setCryptoData) => {
         console.error('Error fetching the crypto data', error);
     }
 };
-export const fetchOneCryptoData = async (name, setCryptoData) => {
-    try {
-        const promises = axios.get(`https://api.kucoin.com/api/v1/market/stats?symbol=${name}-USDT`)
-        let res = await promises.json()
-        console.log(res);
-     
-        // setCryptoData(data);
-    } catch (error) {
-        console.error('Error fetching the crypto data', error);
-    }
-};
