@@ -84,9 +84,14 @@ h1 {
   color: var(--text-color-secondary);
 }
 
-th{
+th {
   text-align: center !important;
 }
+
+.cursorSymbol {
+  cursor: pointer;
+}
+
 .ant-table-wrapper * {
   text-align: center;
 }

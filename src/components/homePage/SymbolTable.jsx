@@ -10,7 +10,7 @@ import ModalCryptoDetails from './ModalCryptoDetails';
 
 function SymbolTable() {
     const [cryptoData, setCryptoData] = useState([]);
-    const [selectedCrypto, setSelectedCrypto] = useState({});
+    const [selectedCrypto, setSelectedCrypto] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
@@ -47,6 +47,9 @@ function SymbolTable() {
             title: 'Symbol',
             dataIndex: 'symbol',
             key: 'symbol',
+            render: (symbol, record) => (
+                <p className='cursorSymbol' onClick={() => openModal(symbol)}>{symbol.split('-')[0]}</p>
+            ),
         },
         {
             title: 'Buy',
@@ -81,14 +84,8 @@ function SymbolTable() {
             dataIndex: 'low',
             key: 'low',
             render: value => parseFloat(value).toFixed(2)
-        },
-        {
-            title: 'Details',
-            key: 'action',
-            render: (_, record) => (
-                <Button type="primary" onClick={() => openModal(record)}>Details</Button>
-            ),
-        },
+        }
+
     ];
 
 
@@ -99,7 +96,7 @@ function SymbolTable() {
                 dataSource={cryptoData.map((symbol, index) => ({ ...symbol, key: index }))}
                 columns={columns}
             />
-            {selectedCrypto.symbol && <ModalCryptoDetails isOpen={isModalOpen} cryptoData={selectedCrypto} onClose={closeModal} />}
+            {selectedCrypto && <ModalCryptoDetails isOpen={isModalOpen} symbolName={selectedCrypto} cryptoData={cryptoData} onClose={closeModal} />}
         </>
     );
 }

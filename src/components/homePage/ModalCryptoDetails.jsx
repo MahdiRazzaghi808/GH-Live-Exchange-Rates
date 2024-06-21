@@ -1,15 +1,20 @@
 import React from 'react';
 import { Modal } from 'antd';
 
-const ModalCryptoDetails = ({ isOpen, cryptoData, onClose }) => {
-  const { symbol, last, buy, sell, changeRate, changePrice, high, low, vol, volValue, averagePrice, takerFeeRate, makerFeeRate } = cryptoData;
+const ModalCryptoDetails = ({ isOpen, symbolName, cryptoData, onClose }) => {
+
+  const filter = cryptoData.filter(v => v.symbol === symbolName)
+  const { symbol, last, buy, sell, changeRate, changePrice, high, low, vol, volValue, averagePrice, takerFeeRate, makerFeeRate } = filter[0];
+
+
+
 
   return (
     <Modal
       open={isOpen}
       onCancel={onClose}
       footer={[]}
-      title={`${symbol.split('-')[0]} Details`}
+      title={symbol}
       className="crypto-modal"
     >
       <div className='modal-wrapper'>
